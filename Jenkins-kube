@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'javahome2', url: 'https://github.com/srinicloud87/myweb.git'
+                git credentialsId: 'javahome2', url: 'https://github.com/SREENU2268/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -40,7 +40,7 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t srinidockerhub87/spring-boot-mongo .'
+                 sh 'docker build -t sreenu2/spring-boot-mongo .'
              }
          }
         stage('Push Docker Image'){
@@ -48,7 +48,7 @@ pipeline{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
                       sh "docker login -u srinidockerhub87 -p ${DOCKER_HUB_CREDENTIALS}"
             }
-            sh 'docker push srinidockerhub87/spring-boot-mongo'
+            sh 'docker push sreenu2/spring-boot-mongo'
         }
       }
         stage("Deploy To Kuberates Cluster"){
